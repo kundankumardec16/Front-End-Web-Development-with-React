@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Moment from 'moment';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap' ;
 
 class DishDetail extends Component {
@@ -31,7 +30,7 @@ class DishDetail extends Component {
                 return (
                     <div>
                         <li>{feedback.comment}</li><br></br>
-                        <li>-- {feedback.author} , {Moment(feedback.date).format('MMM DD, YYYY')}</li><br></br>
+                        <li>-- {feedback.author} , {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(feedback.date)))}</li><br></br>
                     </div>
                 );
             });
@@ -50,13 +49,15 @@ class DishDetail extends Component {
 
     render() {
         return (
-            <div className="row">
-                <div className="col-12 col-md-5 m-1">
-                    {this.renderDish(this.props.dish)}
-                </div>
-                <div className="col-12 col-md-5 m-1">
-                    {this.renderComments(this.props.dish)}
-                </div>
+            <div className="container">
+               <div className="row">
+                    <div className="col-12 col-md-5 m-1">
+                        {this.renderDish(this.props.dish)}
+                    </div>
+                    <div className="col-12 col-md-5 m-1">
+                        {this.renderComments(this.props.dish)}
+                    </div>
+                </div> 
             </div>
         );
     }
