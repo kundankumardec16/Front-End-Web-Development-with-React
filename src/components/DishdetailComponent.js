@@ -3,11 +3,12 @@ import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbIte
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
 
     function RenderDish({dish}) {
         return(
             <Card key={dish.id}>
-                <CardImg top src={dish.image} alt={dish.name} />
+                <CardImg top src={baseUrl + dish.image} alt={dish.name} />
                 <CardBody>
                     <CardTitle>{dish.name}</CardTitle>
                     <CardText>{dish.description}</CardText>
@@ -75,19 +76,19 @@ import { Loading } from './LoadingComponent';
                             <Row className="form-group">
                                 <Col>
                                     <Label htmlFor="rating">Rating</Label>
-                                    <Control.select model=".rating" name="rating" id="rating" className="form-control">
+                                    <Control.Select model=".rating" name="rating" id="rating" className="form-control">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
-                                    </Control.select>
+                                    </Control.Select>
                                 </Col>
                             </Row>
                             <Row className="form-group">
                                 <Col>
                                     <Label htmlFor="name">Your Name</Label>
-                                    <Control.text model=".author" id="name" name="name"
+                                    <Control.Text model=".author" id="name" name="name"
                                         placeholder="Your Name" className="form-control"
                                         validators={{
                                             required, minLength: minLength(3), maxLength: maxLength(15)
@@ -108,7 +109,7 @@ import { Loading } from './LoadingComponent';
                             <Row className="form-group">
                                 <Col>
                                     <Label htmlFor="comment">Comment</Label>
-                                    <Control.textarea model=".comment" id="comment" name="comment" rows="6" className="form-control" />
+                                    <Control.Textarea model=".comment" id="comment" name="comment" rows="6" className="form-control" />
                                 </Col>
                             </Row>
                             <Row className="form-group">
