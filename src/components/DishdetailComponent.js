@@ -17,7 +17,7 @@ import { baseUrl } from '../shared/baseUrl';
         );
     }
 
-    function RenderComments({dishComments, addComment, dishId}) {
+    function RenderComments({dishComments, postComment, dishId}) {
         const dishComment = dishComments.map((feedback) => {
             return (
                 <div key={dishComments.id}>
@@ -31,7 +31,7 @@ import { baseUrl } from '../shared/baseUrl';
                 <li><h4>Comments</h4></li>
                 {dishComment}
                 <li>
-                    <CommentForm dishId={dishId} addComment={addComment} />
+                    <CommentForm dishId={dishId} postComment={postComment} />
                 </li>
             </ul>
         );
@@ -62,7 +62,7 @@ import { baseUrl } from '../shared/baseUrl';
 
         handleSubmit(values) {
             this.toggleModal()
-            this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+            this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
         }
 
         render() {
@@ -76,19 +76,19 @@ import { baseUrl } from '../shared/baseUrl';
                             <Row className="form-group">
                                 <Col>
                                     <Label htmlFor="rating">Rating</Label>
-                                    <Control.Select model=".rating" name="rating" id="rating" className="form-control">
+                                    <Control.select model=".rating" name="rating" id="rating" className="form-control">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
-                                    </Control.Select>
+                                    </Control.select>
                                 </Col>
                             </Row>
                             <Row className="form-group">
                                 <Col>
                                     <Label htmlFor="name">Your Name</Label>
-                                    <Control.Text model=".author" id="name" name="name"
+                                    <Control.text model=".author" id="name" name="name"
                                         placeholder="Your Name" className="form-control"
                                         validators={{
                                             required, minLength: minLength(3), maxLength: maxLength(15)
@@ -109,7 +109,7 @@ import { baseUrl } from '../shared/baseUrl';
                             <Row className="form-group">
                                 <Col>
                                     <Label htmlFor="comment">Comment</Label>
-                                    <Control.Textarea model=".comment" id="comment" name="comment" rows="6" className="form-control" />
+                                    <Control.textarea model=".comment" id="comment" name="comment" rows="6" className="form-control" />
                                 </Col>
                             </Row>
                             <Row className="form-group">
@@ -163,7 +163,7 @@ import { baseUrl } from '../shared/baseUrl';
                         </div>
                         <div className="col-12 col-md-5 m-1">
                             <RenderComments dishComments={props.comments}
-                                addComment={props.addComment}
+                                postComment={props.postComment}
                                 dishId={props.dish.id}
                             />
                         </div>
